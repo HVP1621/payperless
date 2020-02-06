@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import database_utils as db
 import userfiles_utils as ufile
+from passlib.hash import sha256_crypt
 import uuid
 
 
