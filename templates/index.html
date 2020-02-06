@@ -22,141 +22,136 @@
     <script src="{{url_for('static', filename='js/typewriter.js')}}"></script>
 </head>
 
+
 <body>
 
-    <body>
+    <div class="container">
+        
+        <div class="row">
+            <div class="spacer"></div>
+        </div>
 
-        <div class="container">
-            
-            <div class="row">
-                <div class="spacer"></div>
-            </div>
-
-            
-            <div class="row">
-                <div class="seven columns">
-                    <section class="header">
-                        <h1>pay/less<div class="name-small">OFFICE</div></h1>
-                        <br>
-                        
-                        <!-- <h3 class="heading">SAVE <span class="typewriter"></span></h3> -->
-                    </section>
-                </div>
-                <div class="five columns">
-            
-                    <form action="{{url_for('login')}}" method="post">
-                        <div class="row">
-                        <div class="twelve columns">
-                            <label class="small heading no-border">Username</label>
-                            <input class="u-full-width" type="email" placeholder="test@mailbox.com" name="username">
-                        </div>
-                        
-                        </div>
-                        
-                        <label class="small heading no-border">Password</label>
-                        <input class="u-full-width" type="password" placeholder="Password" name="password">
-                        
-                        <input class="button-primary" type="submit" value="Submit">
-                    </form>
+        
+        <div class="row">
+            <div class="seven columns">
+                <section class="header">
+                    <h1>pay/less<div class="name-small">OFFICE</div></h1>
+                    <br>
                     
-                </div>
+                    <!-- <h3 class="heading">SAVE <span class="typewriter"></span></h3> -->
+                </section>
             </div>
+            <div class="five columns">
+        
+                <form action="{{url_for('login')}}" method="post">
+                    <div class="row">
+                    <div class="twelve columns">
+                        <label class="small heading no-border">Username</label>
+                        <input class="u-full-width" type="email" placeholder="test@mailbox.com" name="username">
+                    </div>
+                    
+                    </div>
+                    
+                    <label class="small heading no-border">Password</label>
+                    <input class="u-full-width" type="password" placeholder="Password" name="password">
+                    
+                    <input class="button-primary" type="submit" value="Submit">
+                </form>
+                
+            </div>
+        </div>
 
-            <div class="row">
-                <div class="spacer"></div>
-            </div>
+        <div class="row">
+            <div class="spacer"></div>
+        </div>
 
-            <div class="nav-spacer"></div>
-            <nav class="navbar">
-                <div class="container">
-                    <ul class="navbar-list">
-                        <a href="#about"><li class="navbar-item">ABOUT</li></a>
-                        <a href="research.html"><li class="navbar-item">WORKFLOW</li></a>
-                        <a href="team.html"><li class="navbar-item">SIGNIT</li></a>
-                        <a href="pubs.html"><li class="navbar-item">FILESTACK</li></a>
-                        <a href="pubs.html"><li class="navbar-item">TEAM</li></a>
-                        <a href="contact.html"><li class="navbar-item">CONTACT</li></a>
-                        <a href="#cryptoiitbh"><li class="navbar-item">REGISTER</li></a>
-                        <a href="#cryptoiitbh"><li class="navbar-item">DONATE</li></a>
-                        
-                    </ul>
-                </div>
-            </nav>
-            <div class="row">
-                <div class="spacer"></div>
+        <div class="nav-spacer"></div>
+        <nav class="navbar">
+            <div class="container">
+                <ul class="navbar-list">
+                    <a href="#about"><li class="navbar-item">ABOUT</li></a>
+                    <a href="research.html"><li class="navbar-item">WORKFLOW</li></a>
+                    <a href="team.html"><li class="navbar-item">SIGNIT</li></a>
+                    <a href="pubs.html"><li class="navbar-item">FILESTACK</li></a>
+                    <a href="pubs.html"><li class="navbar-item">TEAM</li></a>
+                    <a href="contact.html"><li class="navbar-item">CONTACT</li></a>
+                    <a href="#cryptoiitbh"><li class="navbar-item">REGISTER</li></a>
+                    <a href="#cryptoiitbh"><li class="navbar-item">DONATE</li></a>
+                    
+                </ul>
             </div>
+        </nav>
+        <div class="row">
+            <div class="spacer"></div>
+        </div>
+        
+        
+        <div class="row">
+            <div class="six columns">
+                <!-- <img style="float:right;max-width: 100%;" src="https://imgs.xkcd.com/comics/security.png"> -->
             
-            
-            <div class="row">
-                <div class="five columns">
-                    <img style="float:right;max-width: 100%;" src="https://imgs.xkcd.com/comics/security.png">
-                </div>
-                <div class="seven columns">
-                    <h3 class="heading" style="text-align: end;">What We Do</h3>
-                    <p style="text-align: justify;">
-                        Pay/Less (pay-per-less) is an initiative by the students of IIT Bhilai to help heal a world on the brink of disaster.
-                        We understand that people love paper, the office does too. Maybe a bit too much. We are in the business of trying to reduce the 
-                        usage of this precious resource, by giving tasks to machines built to handle them in the first place.
-                        Moving from hardcopies might just save our hardwoods. Cheers<br>
-                        <span  style="display: block; text-align: end;" class="small heading no-border">-Team Pay/Less</span>
-
-                    </p>
-                </div>
-            </div>
-    
-            <div class="row">
-                <div class="spacer"></div>
-            </div>
-            
-    
-            <div class="row">
                 <h3 class="heading">Check Us Out</h3>
-                <p>
+                <p style="text-align: justify;">
                     Check out our repos for further updates. We are constantly pushing ourselves to better our tech in order
                     to make a difference. Be a part of the team. Fork Now.
                 </p>
-                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                <a class="github-button" href="https://github.com/theboxahaan" data-color-scheme="no-preference: light; light: light; dark: dark;"  aria-label="Follow @theboxahaan on GitHub">Follow @theboxahaan</a>
-            
-            </div>
-    
-            <div class="row">
-                <div class="spacer"></div>
-            </div>
-
-            <div class="row">
-                <div class="five columns">
-                    <form action="{{url_for('login')}}" method="post">
-                        <div class="row">
-                        <div class="twelve columns">
-                            <label class="small heading no-border">User info</label>
-                            <input class="u-full-width" type="text" placeholder="Handle" name="nick">
-                            <input class="u-full-width" type="email" placeholder="Email" name="username">
-                        </div>
-                        
-                        </div>
-                        
-                        <label class="small heading no-border">Password</label>
-                        <input class="u-full-width" type="password" placeholder="Password" name="password">
-                        <input class="u-full-width" type="password" placeholder="Confirm Password" name="confirm-password">
-                        <input class="button-primary" type="submit" value="Register">
-                    </form>
-
+                <div>
+                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    <a class="github-button" href="https://github.com/theboxahaan" data-color-scheme="no-preference: light; light: light; dark: dark;"  aria-label="Follow @theboxahaan on GitHub">Follow @theboxahaan</a>
                 </div>
-                <div class="seven columns">
+            </div>
+            <div class="six columns">
+                <h3 class="heading" style="text-align: end;">What We Do</h3>
+                <p style="text-align: justify;">
+                    Pay/Less (pay-per-less) is an initiative by the students of IIT Bhilai to help heal a world on the brink of disaster.
+                    We understand that people love paper, the office does too. Maybe a bit too much. We are in the business of trying to reduce the 
+                    usage of this precious resource, by giving tasks to machines built to handle them in the first place.
+                    Moving from hardcopies might just save our hardwoods. Cheers<br>
+                    <span  style="display: block; text-align: end;" class="small heading no-border">-Team Pay/Less</span>
+
+                </p>
+            </div>
+        </div>
+
+    
+
+        <div class="row">
+            <div class="spacer"></div>
+        </div>
+
+        <div class="row">
+            <div class="five columns">
+                <form action="{{url_for('login')}}" method="post">
+                    <div class="row">
+                    <div class="twelve columns">
+                        <label class="small heading no-border">User info</label>
+                        <input class="u-full-width" type="text" placeholder="Handle" name="nick">
+                        <input class="u-full-width" type="email" placeholder="Email" name="username">
+                    </div>
                     
-                    <h3 style="text-align: end;" class="heading">Register with Us</h3>
-                    <p style="text-align: justify;">
-                        
-                    </p>
-                </div>
+                    </div>
+                    
+                    <label class="small heading no-border">Password</label>
+                    <input class="u-full-width" type="password" placeholder="Password" name="password">
+                    <input class="u-full-width" type="password" placeholder="Confirm Password" name="confirm-password">
+                    <input class="button-primary" type="submit" value="Register">
+                </form>
 
-               
-                
             </div>
-    
-        </body>
-        <script src="{{url_for('static', filename='js/twitter-handler.js')}}"></script>
-    
-    </html>
+            <div class="seven columns">
+                
+                <h3 style="text-align: end;" class="heading">Register with Us</h3>
+                <p style="text-align: justify;">
+                    
+                </p>
+            </div>
+
+            
+            
+        </div>
+
+</body>
+    <script src="{{url_for('static', filename='js/twitter-handler.js')}}"></script>
+
+</html>
 

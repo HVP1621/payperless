@@ -1,0 +1,10 @@
+ul{
+    list-style: none;
+}
+
+.active-list > li{
+    display: flex;
+    padding-bottom: 0.7em;
+    margin-bottom: 2em;
+    border-bottom: 1px solid #eee;
+}
