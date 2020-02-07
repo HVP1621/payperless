@@ -1,4 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, Response
+from flask import Flask, render_template, request, redirect, url_for, flash, Response, session
+from flask_login import LoginManager, login_user, login_required, current_user
+from User import User
 import database_utils as db
 import userfiles_utils as ufile
 from passlib.hash import sha256_crypt
@@ -21,7 +23,10 @@ import preprop
 from generateURL import requestURL
 
 app = Flask(__name__)
-app.secret_key = 'super secret key'
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 ALLOWED_EXTENSIONS = set(['jpg'])
 ALLOWED_EXTENSIONS1 = set(['pdf'])
 PROJECT_HOME = os.path.dirname(os.path.realpath(__file__))
@@ -71,7 +76,6 @@ def login():
     if request.method == 'POST':
         table_name = 'userinfo'
         if 'nick' in request.form:
-
             bucket_name = str(uuid.uuid4())
             values = {'userid': request.form['username'],
             			'passwd': request.form['password'],
@@ -83,17 +87,32 @@ def login():
             return render_template('index.html')
         else:
             # Login
-            email_info = {'userid': request.form['username']}
-            user_info = db.read_db(db.cursor, table_name, email_info)[0]
-            if user_info['passwd'] == request.form['password']:
-                bucket_name = user_info['userdir']
-                username = user_info['userid']
-                return render_template('dashboard.html')
+            user, pwd = request.form['username'], request.form['password']
+            user = User(user)
+            if user.authenticate(pwd):
+                login_user(user)
+                bucket_name = user._userdir
+                username = user._id
+                return redirect(url_for('dashboard'))
             else:
-                return "Login UnSuccessful"
+                return redirect(url_for('serve_login_page'))
+
 
     	# user, pwd = request.form['username'], request.form['password']
     	# return user+' '+pwd
+
+@app.route('/dashboard')
+@login_required
+def dashboard():
+
+    return render_template('dashboard.html', cur_name = current_user._id)
+
+
+
+@login_manager.user_loader
+def load_user(userid):
+    return User(userid)
+
 
 @app.route('/signpdf/', methods=['GET','POST'])
 # @is_logged_in
@@ -326,7 +345,7 @@ def merger():
             page = PdfFileReader(filedata[os.path.normpath(pdf_path[:-4]+'_'+str(more_pages)+'.pdf')]).getPage(0)
             print('added pages')
             output.addPage(page)
-        with open(os.path.normpath(pdf_path[:-4]+'_signed.pdf'),"wb") as f:
+        with open(os.path.normpath(pdf_path[:-4]+'_sign.pdf'),"wb") as f:
             output.write(f)
         for file in filedata.values():
             file.close()
@@ -379,7 +398,7 @@ def showpdf():
     # bucket_name = 'a1edf455-273f-48a6-a2c5-0b056a042e5d'
     # pdf_file = requestURL(bucket_name, 'PDF_8120d2d6-93b8-4dc5-a973-3ad8a3472aa7.pdf')
     # pdf_file = '/static/' + session['username'] + '_out.pdf'
-    pdf_file = '/static/' + username + '_signed.pdf'
+    pdf_file = '/static/' + username + '_sign.pdf'
 
 
     """Need to display stuff from the Bucket"""

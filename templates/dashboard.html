@@ -33,15 +33,16 @@
                     <a href="research.html"><li class="navbar-item">WORKFLOW</li></a>
                     <a href="team.html"><li class="navbar-item">SIGNIT</li></a>
                     <a href="pubs.html"><li class="navbar-item">FILESTACK</li></a>
-                    <a href="pubs.html"><li class="navbar-item">TEAM</li></a>
-                    <a href="contact.html"><li class="navbar-item">CONTACT</li></a>
-                    <a href="#cryptoiitbh"><li class="navbar-item">REGISTER</li></a>
-                    <a href="#cryptoiitbh"><li class="navbar-item">DONATE</li></a>
-                    
                 </ul>
             </div>
         </nav>
 
+        <div class="row">
+            <div class="spacer"></div>
+        </div>
+
+        <h3 class="heading no-border">{{cur_name}}</h3>
+        
         <div class="row">
             <div class="spacer"></div>
         </div>
@@ -62,12 +63,11 @@
                             <h3 class="small heading">CREATOR - IIT BHILAI</h3>
                             
                             <div class="spacer-small"></div>
-                            <!-- <a class="button button-primary" href="{{url_for('signpdf')}}">SIGN DOCUMENT</a>
-                             -->
-                             <form action="{{url_for('signpdf')}}" method="post">
+                            <form action="{{url_for('signpdf')}}" method="post">
                                 <input type="hidden" value="123" name="docid">
                                 <input class="button-primary" type="submit" value="SIGN DOCUMENT">
                             </form>
+                            <!-- <a class="button button-primary" href="#">SIGN DOCUMENT</a> -->
                             <a class="button button" href="#">REJECT</a>
                         </div>
 
