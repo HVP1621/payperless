@@ -1,6 +1,9 @@
 import ibm_boto3
 from ibm_botocore.client import Config
 from  ibm_botocore.exceptions import ClientError
+from PyPDF2 import PdfFileReader, PdfFileWriter
+from io import BytesIO
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~ Conection to COS Buckets ~~~~~~~~~~~~~~~~~~~~~~~#
 # Constants for IBM COS values
@@ -50,22 +53,25 @@ def create_bucket(bucket_name):
         return 0
 
 
-def get_bucket_contents(bucket_name):
-    print("Retrieving bucket contents from: {0}".format(bucket_name))
-    try:
-        files = cos_resource.Bucket(bucket_name).objects.all()
-        file_names = []
-        file_update = []
-        for file in files:
-            file_names.append(file.key)
-            file_update.append(file.last_modified)
+def get_bucket_contents(bucket_name, file_name=None):
+	print("Retrieving bucket contents from: {0}".format(bucket_name))
+	try:
+		if file_name is None:
+			files = cos_resource.Bucket(bucket_name).objects.all()
+		else:
+			files = cos_resource.Bucket(bucket_name).objects.filter(Prefix=file_name)
+		file_names = []
+		file_update = []
+		for file in files:
+		    file_names.append(file.key)
+		    file_update.append(file.last_modified)
 
-        return file_names, file_update
+		return file_names, file_update
 
-    except ClientError as be:
-        print("CLIENT ERROR: {0}\n".format(be))
-    except Exception as e:
-        print("Unable to retrieve bucket contents: {0}".format(e))
+	except ClientError as be:
+		print("CLIENT ERROR: {0}\n".format(be))
+	except Exception as e:
+		print("Unable to retrieve bucket contents: {0}".format(e))
 
 def upload2bucket(Filename, Bucket, Key):
     cos_client.upload_file(Filename=Filename,Bucket=Bucket,Key=Key)
@@ -80,3 +86,31 @@ def delete_item(bucket_name, item_name):
         print("CLIENT ERROR: {0}\n".format(be))
     except Exception as e:
         print("Unable to delete item: {0}".format(e))
+
+def get_file(bucket_name, file_name):
+    print("Retrieving bucket contents from: {0}".format(bucket_name))
+    try:
+        # files = cos_resource.Bucket(bucket_name).objects.filter(Prefix=file_name)
+        file = cos_resource.Object(bucket_name, file_name)
+        file_body = file.get()['Body'].read()
+        pdfReader = PdfFileReader(BytesIO(file_body))
+        # pdfWriter = PdfFileWriter()
+        # for pageNum in range(pdfReader.numPages):
+        # 	pdfWriter.addPage(pdfReader.getPage(pageNum))
+        # filename = 'decrypt.pdf'
+        # resultPdf = open(filename, 'wb')
+        # pdfWriter.write(resultPdf)
+        # resultPdf.close()
+        
+        return pdfReader
+    except ClientError as be:
+        print("CLIENT ERROR: {0}\n".format(be))
+    except Exception as e:
+        print("Unable to retrieve bucket contents: {0}".format(e))
+
+
+if __name__ == '__main__':
+	bucket_name = 'a1edf455-273f-48a6-a2c5-0b056a042e5d'
+	upload2bucket('1.pdf', bucket_name, '1.pdf')
+	# get_file(bucket_name, '1.pdf')
+	# a1edf455-273f-48a6-a2c5-0b056a042e5d Ahaan

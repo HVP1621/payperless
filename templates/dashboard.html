@@ -62,7 +62,12 @@
                             <h3 class="small heading">CREATOR - IIT BHILAI</h3>
                             
                             <div class="spacer-small"></div>
-                            <a class="button button-primary" href="#">SIGN DOCUMENT</a>
+                            <!-- <a class="button button-primary" href="{{url_for('signpdf')}}">SIGN DOCUMENT</a>
+                             -->
+                             <form action="{{url_for('signpdf')}}" method="post">
+                                <input type="hidden" value="123" name="docid">
+                                <input class="button-primary" type="submit" value="SIGN DOCUMENT">
+                            </form>
                             <a class="button button" href="#">REJECT</a>
                         </div>
 

@@ -1,0 +1,55 @@
+<nav position=" fixed;" class="navbar navbar-expand-md navbar-light " style="background-color:black;" >
+    <img style="height:80px; width:80px;" src="{{url_for( 'static', filename='sigma.png' )}}">
+ <a  class="navbar-brand" href="/" style="color:#1A6E6E  ;" ><h1 style="font-size:60px;"><b style="color:#F6AD11  ;"> Sign</b><b>IT</b></h1></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars" ></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul id="navigation" class=" navbar-nav mr-auto ">
+    <!---  <li class="nav-item active">
+    /    <a class="nav-link" style="color:coral ;"  href="/"><h3><b> HOME </b></h3><span class="sr-only">(current)</span></a>
+  </li>--->
+      <li class=" nav-item">
+        <a class="nav-link"  style="color:coral"href="/about"><h3><b> About</h3></b> </a>
+      </li>
+    </ul>
+      <ul  class="  navbar-nav mr-auto">
+        {% if session.logged_in %}
+        <li class="nav-item">
+              <a class="nav-link" ><h3 style="color:#97ABA9"><b> Welcome {{session.username}} !! </b></h3></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" ><h4><b>  </b></h4></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" ><h4><b>  </b></h4></a>
+        </li>
+        {% endif %}
+      </ul>
+    <ul id="navigation" class="  navbar-nav navbar-right">
+      {% if session.logged_in %}
+      <li class="nav-item">
+        <a class="nav-link"   href="/signpdf/" ><h4><b> Sign a pdf </b></h4></a>
+      </li>
+        <li class="active nav-item">
+          <a class="nav-link"   href="/dashboard" ><h4><b> Signatures </b></h4></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"   href="/dashboard_pdf" ><h4><b> Signed pdfs </b></h4></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"   href="/logout"><h4><b> Logout </b></h4></a>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link"   href="/register/"><h4><b> Register </b></h4></a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link "  href="/login"><h4><b> Login </b></h4></a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>

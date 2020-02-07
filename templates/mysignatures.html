@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+
+ {% block body %}
+      <div class="container">
+        <h1> Signatures </h1>
+        <a class="btn btn-success" href="/add_signature/"> Add Signature </a>
+        <hr>
+        <table  class="table table-striped">
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Signatures</th>
+              <th>TimeStamp</th>
+              <th></th>
+            </tr>
+            {% for signature in signatures %}
+              <tr>
+                <td></td>
+                <td><a class="btn btn-success" href="#" >{{signature.title}}</a></td>
+
+                <td>
+                  <img class="myImg" id={{signature.title}} alt="snow" style="height:60px;width:100px" src="{{signature.image}}"/>
+                  <div id="myModal" class="modal">
+                  <span class="close">&times;</span>
+                  <img class="modal-content" id="img01">
+                  <div id="caption"></div>
+                  </div>
+
+        <script>
+
+                var modal = document.getElementById('myModal');
+
+                // Get the image and insert it inside the modal - use its "alt" text as a caption
+                var img = document.getElementById('{{signature.title}}');
+                var modalImg = document.getElementById("img01");
+                var captionText = document.getElementById("caption");
+                img.onclick = function(){
+                  modal.style.display = "block";
+                  modalImg.src = this.src;
+                  captionText.innerHTML = this.alt;
+                }
+
+                // Get the <span> element that closes the modal
+                //var span = document.getElementsByClassName("close")[0];
+
+                // When the user clicks on <span> (x), close the modal
+                window.onclick = function(event) {
+                  if (event.target == modal) {
+                      modal.style.display = "none";
+                  }
+                }
+
+
+        </script>
+                </td>
+
+                <td>
+                  <p href="#" >{{signature.timestamp}}</p>
+                </td>
+
+                <td>
+                  <form action="{{url_for('delete_signature',id=signature.id)}}" method="post">
+                     <input type="hidden" name="_method" value="DELETE">
+                     <input type="submit" value="Delete" class="btn btn-danger">
+                  </form>
+                </td>
+              </tr>
+            {% endfor %}
+        </table>
+
+
+    </div>
+
+ {% endblock %}

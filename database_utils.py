@@ -78,7 +78,12 @@ def read_db(cursor, table_name, column_names:dict=None, connection=plo):
         if column_names is not None:
             search_str = ""
             for column_name in column_names:
-                search_str += column_name + "=" + "'" + column_names[column_name] + "', "
+            	if isinstance(column_names[column_name], str):
+            		search_str += column_name + "=" + "'" + column_names[column_name] + "', "
+            	elif isinstance(column_names[column_name], int):
+	                search_str += column_name + "=" +  column_names[column_name] + ", "
+
+
             if len(search_str) >= 2:
                 search_str = search_str[:-2]
             cursor.execute("SELECT * from {} WHERE {}".format(table_name, search_str))  
@@ -158,8 +163,11 @@ def read_db(cursor, table_name, column_names:dict=None, connection=plo):
 if __name__ == '__main__':
 	# print(get_columns_db(cursor, "DocInfo"))
 	# write_to_db(cursor, "DocStatus", {'docid': 5, 'owner': 'Ahaan', 'userlist': '{"AP", "Harsh"}', 'activeuser': 'AP', 'wfid': 2})
-	# print(read_db(cursor, "userinfo"))
-	email_info = {'userid': 'bharathvarma21041999@gmail.com'}
-	user_info = read_db(cursor, 'userinfo', email_info)[0]
-	print(user_info)
+	# write_to_db(cursor, "Docinfo", {'docid': 123, 'docpath': 'a1edf455-273f-48a6-a2c5-0b056a042e5d/1.pdf'})
+	# print(read_db(cursor, "docinfo"))
+
+	write_to_db(cursor, "userinfo", {'userid': "bharathvarma21041999@gmail.com", 'passwd': '1', 'userdir': '92d84936-218b-4656-809b-5bd823a930c2', 'is_auth': False})
+	# email_info = {'userid': 'bharathvarma21041999@gmail.com'}
+	# user_info = read_db(cursor, 'userinfo', email_info)[0]
+	# print(user_info)
 

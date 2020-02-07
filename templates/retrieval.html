@@ -1,0 +1,79 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<header>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</header>
+
+
+
+
+
+<div class="container">
+
+  <div class="row" id="first">
+      <div class="col-sm">
+   
+        <iframe src="{{res.pdf}}#view=fit" frameborder="0" width="100%" height="100%" id="embed1" style="position:relative; height:100vh; margin: 0px 0px 0px 0px; z-index:-1"></iframe>
+
+        <svg class="dropzone" 
+             id="svg-dropzone" 
+             viewBox="0 0 10 10" 
+             width="20px" 
+             height="20px" 
+             ></svg>   
+      </div>
+
+
+      <div class="col-sm">
+        
+        {% for signature in res.signatures %}
+        <div class="row">
+        <img id='{{signature.title}}' class="draggable draggable-droppable" src="{{signature.image}}">
+       </div>
+        {% endfor %}
+       
+        </div>
+          
+        </div>
+
+
+
+  <div class="row">
+    <form id="details" method="POST" action="/merger">
+        <input type="text" name="1" id="Id" style="display: none;">
+        <input type="text" name="2" id="left" style="display: none;">
+        <input type="text" name="3" id="top" style="display: none;">
+        <input type="text" name="4" id="height" style="display: none;">
+        <input type="text" name="5" id="width" style="display: none;">
+
+        <input type="text" name="Page_Num" value="{{res.page_no}}" id="width" style="display: none;">
+
+
+        <input type="submit" name="Submit" value="SUBMIT" class="btn btn-danger", style="position: fixed; right: 33vw; bottom: 50vh; padding: 10px;">
+        <input type="submit" name="Next" value="Next Page" class="btn btn-success", style="position: fixed; right: 33vw; bottom: 60vh; padding: 10px;">
+        <input type="submit" name="Previous" value="Prev Page" class="btn btn-success", style="position: fixed; right: 33vw; bottom: 70vh; padding: 10px;">
+</form>
+
+  </div>
+      </div>
+
+    
+
+
+
+
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.9/interact.min.js'></script>
+
+  
+
+  <script  type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+
+
+
+{% endblock %}
