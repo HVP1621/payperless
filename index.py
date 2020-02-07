@@ -582,11 +582,23 @@ def delete_signature(id):
     return redirect(url_for('mysignatures'))
 
 
+#~~~~~~~~~~~~~~~~~~~~~~ SocketIO For Chat Application ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+from flask_socketio import SocketIO
+socketio = SocketIO(app)
+
+def messageReceived(methods=['GET', 'POST']):
+    print('message was received')
+
+@socketio.on('my event')
+def handle_my_custom_event(json, methods=['GET', 'POST']):
+    print('received my event: ' + str(json))
+    socketio.emit('my response', json, callback=messageReceived)
 
 
+if __name__ == '__main__':  
+    # app.run(debug='True')
+    socketio.run(app, host='0.0.0.0')
 
-if __name__ == '__main__':
-    app.run(debug='True')
     # pass
 
 
